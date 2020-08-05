@@ -7,7 +7,7 @@
     "project": "./tsconfig.json",
     "useJSXTextNode": true
   },
-  "plugins": ["prettier", "@typescript-eslint", "react"],
+  "plugins": ["prettier", "@typescript-eslint", "react", "react-hooks"],
   "extends": [
     "plugin:prettier/recommended",
     "prettier/@typescript-eslint",
@@ -21,6 +21,13 @@
     "react/jsx-filename-extension": ["off"],
     "react/prop-types": ["off"],
     "no-return-assign": ["off"],
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": [
+      "warn",
+      {
+        "additionalHooks": "useRecoilCallback"
+      }
+    ]
   }
 }

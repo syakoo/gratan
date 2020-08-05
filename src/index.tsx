@@ -1,11 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-// ____________________________________________________________________________
+import { ThemeProvider } from 'styled-components'
+import { RecoilRoot } from 'recoil'
+
+import { theme, GlobalStyle } from './style'
+import SampleApp from './SampleApp'
+// ____________________
 //
-const App: React.FC = () => (
-  <div>
-    <h1>Hello World</h1>
-  </div>
+const App: React.FC = () => <SampleApp />
+
+const Container: React.FC = () => (
+  <RecoilRoot>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle {...theme} />
+      <App />
+    </ThemeProvider>
+  </RecoilRoot>
 )
 
-ReactDOM.render(<App />, document.getElementById('app'))
+ReactDOM.render(<Container />, document.getElementById('app'))
