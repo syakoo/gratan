@@ -7,6 +7,11 @@
     "project": "./tsconfig.json",
     "useJSXTextNode": true
   },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "plugins": ["prettier", "@typescript-eslint", "react", "react-hooks"],
   "extends": [
     "plugin:prettier/recommended",

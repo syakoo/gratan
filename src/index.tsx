@@ -5,6 +5,7 @@ import { RecoilRoot } from 'recoil'
 
 import { theme, GlobalStyle } from './style'
 import SampleApp from './SampleApp'
+
 // ____________________
 //
 const App: React.FC = () => <SampleApp />
