@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import Canvas from '../Canvas'
 import Grid from '../Grid'
-import SelectedItem from '../SelectedItem'
+import SelectedItem, { SelectedItemView } from '../SelectedItem'
 
 // ____________________
 //
@@ -11,6 +11,7 @@ const Main: React.FC = () => {
   return (
     <StyledMain>
       <svg viewBox="-500, -500, 1000, 1000">
+        <SelectedItemView />
         <BgGrid />
         <Canvas />
       </svg>

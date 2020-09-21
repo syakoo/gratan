@@ -1,7 +1,13 @@
+import styled from 'styled-components'
 import React from 'react'
-import { useRecoilValue } from 'recoil'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 
-import { nodesState, edgesState } from '../../store/atoms'
+import {
+  nodesState,
+  edgesState,
+  selectedItemState,
+  editModeState,
+} from '../../store/atoms'
 import Controller from './Controller'
 
 // ____________________
@@ -9,12 +15,13 @@ import Controller from './Controller'
 const Canvas: React.FC = () => {
   const nodes = useRecoilValue(nodesState)
   const edges = useRecoilValue(edgesState)
-  console.log({ nodes, edges })
+  const editMode = useRecoilValue(editModeState)
+  const setSelectedItem = useSetRecoilState(selectedItemState)
 
   return (
     <>
       {edges.map((edge) => (
-        <line
+        <Line
           key={edge.edgeId}
           x1={edge.from.x}
           y1={edge.from.y}
@@ -22,6 +29,10 @@ const Canvas: React.FC = () => {
           y2={edge.to.y}
           stroke={edge.color}
           strokeWidth={edge.width}
+          onClick={() =>
+            editMode === 'SELECT' &&
+            setSelectedItem({ type: 'EDGE', data: edge })
+          }
         />
       ))}
       {nodes.map((node) => (
@@ -45,6 +56,12 @@ const Container = () => (
     <Controller />
   </>
 )
+
+const Line = styled.line`
+  &:hover {
+    stroke-width: 8px;
+  }
+`
 
 // ____________________
 //
