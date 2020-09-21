@@ -38,7 +38,7 @@ export const useController = () => {
             ...co,
             nodeId: getId(),
             r: 5,
-            fill: 'red',
+            fill: 'black',
           },
         ]
       })
@@ -72,7 +72,7 @@ export const useController = () => {
               to: co,
               edgeId: getId(),
               width: 2,
-              color: 'blue',
+              color: 'black',
             },
           ]
         })
