@@ -4,11 +4,10 @@ import { ThemeProvider } from 'styled-components'
 import { RecoilRoot } from 'recoil'
 
 import { theme, GlobalStyle } from './style'
-import SampleApp from './SampleApp'
+import App from './components/App'
 
 // ____________________
 //
-const App: React.FC = () => <SampleApp />
 
 const Container: React.FC = () => (
   <RecoilRoot>

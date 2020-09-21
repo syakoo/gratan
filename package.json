@@ -1,5 +1,5 @@
 {
-  "name": "my-react-env",
+  "name": "gratan",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -30,6 +30,8 @@
     "webpack-merge": "^5.0.9"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "recoil": "^0.0.10",
