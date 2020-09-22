@@ -2,12 +2,12 @@ import React from 'react'
 import { useRecoilValue } from 'recoil'
 import styled, { keyframes } from 'styled-components'
 
-import { selectedItemState } from '../../store/atoms'
+import { selectedItemData } from '../../store/atoms'
 
 // ____________________
 //
 export const SelectedItemView: React.FC = () => {
-  const selectedItem = useRecoilValue(selectedItemState)
+  const selectedItem = useRecoilValue(selectedItemData)
 
   return (
     <>

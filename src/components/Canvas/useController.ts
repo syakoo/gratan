@@ -25,7 +25,7 @@ export const useController = () => {
       if (node) {
         setSelectedItem({
           type: 'NODE',
-          data: node,
+          id: node.nodeId,
         })
         return
       }
@@ -37,7 +37,7 @@ export const useController = () => {
       if (edge) {
         setSelectedItem({
           type: 'EDGE',
-          data: edge,
+          id: edge.edgeId,
         })
       }
     },

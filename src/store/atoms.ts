@@ -1,4 +1,4 @@
-import { atom } from 'recoil'
+import { atom, selector } from 'recoil'
 
 // ____________________
 //
@@ -19,16 +19,10 @@ export type Edge = {
   color: string
 }
 export type EditMode = 'NODE' | 'EDGE' | 'SELECT'
-export type SelectedItem =
-  | {
-      type: 'NODE'
-      data: Node
-    }
-  | {
-      type: 'EDGE'
-      data: Edge
-    }
-  | null
+export type SelectedItem = {
+  type: 'NODE' | 'EDGE'
+  id: number
+} | null
 
 // ____________________
 //
@@ -55,4 +49,21 @@ export const editModeState = atom<EditMode>({
 export const selectedItemState = atom<SelectedItem>({
   key: 'selectedItemState',
   default: null,
+})
+
+export const selectedItemData = selector({
+  key: 'selectedItemData',
+  get: ({ get }) => {
+    const selectedItem = get(selectedItemState)
+    if (selectedItem?.type === 'NODE') {
+      const nodes = get(nodesState)
+      const selectedNode = nodes.find((n) => n.nodeId === selectedItem.id)
+      return selectedNode ? { type: 'NODE' as const, data: selectedNode } : null
+    } else if (selectedItem?.type == 'EDGE') {
+      const edges = get(edgesState)
+      const selectedEdge = edges.find((e) => e.edgeId === selectedItem.id)
+      return selectedEdge ? { type: 'EDGE' as const, data: selectedEdge } : null
+    }
+    return null
+  },
 })

@@ -31,7 +31,7 @@ const Canvas: React.FC = () => {
           strokeWidth={edge.width}
           onClick={() =>
             editMode === 'SELECT' &&
-            setSelectedItem({ type: 'EDGE', data: edge })
+            setSelectedItem({ type: 'EDGE', id: edge.edgeId })
           }
         />
       ))}
