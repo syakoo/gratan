@@ -1,1 +1,0 @@
-module 'react-mathjax-preview'

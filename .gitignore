@@ -1,8 +1,0 @@
-# folder
-node_modules
-dist
-gh-pages*
-
-# file
-yarn.lock
-*.log
