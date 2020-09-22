@@ -19,8 +19,8 @@ export const useNode = () => {
         {
           ...co,
           nodeId: getId(),
-          label: 'label',
-          labelPosition: 'Left',
+          label: '',
+          labelPosition: 'left',
           r: 5,
           fill: 'black',
           stroke: 'black',

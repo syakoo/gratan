@@ -7,14 +7,14 @@ export type Coordinate = {
   y: number
 }
 export type Position =
-  | 'Left'
-  | 'Right'
-  | 'Top'
-  | 'Bottom'
-  | 'TopLeft'
-  | 'TopRight'
-  | 'BottomLeft'
-  | 'BottomRight'
+  | 'left'
+  | 'right'
+  | 'above'
+  | 'below'
+  | 'above left'
+  | 'above right'
+  | 'below left'
+  | 'below right'
 export type Node = Coordinate & {
   type: 'CIRCLE' | 'RECT'
   label: string
@@ -80,4 +80,14 @@ export const selectedItemData = selector({
     }
     return null
   },
+})
+
+export const outputState = atom<boolean>({
+  key: 'outputState',
+  default: false,
+})
+
+export const templatesState = atom<boolean>({
+  key: 'teamplatesState',
+  default: false,
 })

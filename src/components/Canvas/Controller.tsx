@@ -34,7 +34,7 @@ const Controller: React.FC = React.memo(() => {
 const StyledGrid = styled(Grid)`
   circle {
     fill: transparent;
-    r: 20;
+    r: 10;
 
     &:hover {
       stroke: ${(p) => p.theme.secondary};

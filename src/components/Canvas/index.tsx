@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import MathJax from 'react-mathjax-preview'
 
@@ -36,8 +36,8 @@ export const Canvas: React.FC = () => {
           }
         />
       ))}
-      {nodes.map((node) => (
-        <>
+      {nodes.map((node, i) => (
+        <Fragment key={i}>
           {node.type === 'CIRCLE' && (
             <circle
               key={node.nodeId}
@@ -66,36 +66,36 @@ export const Canvas: React.FC = () => {
             x={node.x + 10}
             y={node.y - 13}
             width="100"
-            height="20"
+            height="25"
             style={{
-              textAlign: node.labelPosition.includes('Right')
+              textAlign: node.labelPosition.includes('right')
                 ? 'left'
-                : node.labelPosition.includes('Left')
+                : node.labelPosition.includes('left')
                 ? 'right'
                 : 'center',
             }}
             transform={`translate(${
-              node.labelPosition.includes('Right')
+              node.labelPosition.includes('right')
                 ? '0'
-                : node.labelPosition.includes('Left')
+                : node.labelPosition.includes('left')
                 ? '-120'
                 : '-60'
             }, ${
-              node.labelPosition.includes('Top')
-                ? '-25'
-                : node.labelPosition.includes('Bottom')
-                ? '25'
+              node.labelPosition.includes('above')
+                ? '-18'
+                : node.labelPosition.includes('below')
+                ? '18'
                 : '0'
             })`}
           >
             {
               // @ts-ignore
               <div xmlns="http://www.w3.org/1999/xhtml">
-                <MathJax math={`$${node.label}$`} />
+                {node.label && <MathJax math={`$${node.label}$`} />}
               </div>
             }
           </foreignObject>
-        </>
+        </Fragment>
       ))}
     </>
   )
@@ -105,7 +105,9 @@ export const Canvas: React.FC = () => {
 //
 const Container = () => (
   <>
-    <Canvas />
+    <g id="canvas">
+      <Canvas />
+    </g>
     <Controller />
   </>
 )

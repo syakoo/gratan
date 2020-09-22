@@ -3,17 +3,20 @@ import ShowChartIcon from '@material-ui/icons/ShowChart'
 import ControlCameraIcon from '@material-ui/icons/ControlCamera'
 import RepeatIcon from '@material-ui/icons/Repeat'
 import GetAppIcon from '@material-ui/icons/GetApp'
+import AppsIcon from '@material-ui/icons/Apps'
 import React from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 import styled from 'styled-components'
 
-import { editModeState } from '../../store/atoms'
+import { editModeState, outputState, templatesState } from '../../store/atoms'
 import { useNode, useEdge } from '../../logic/hooks'
 
 // ____________________
 //
 const EditModeSelector: React.FC = () => {
   const [editMode, setEditMode] = useRecoilState(editModeState)
+  const setOutput = useSetRecoilState(outputState)
+  const setTemplates = useSetRecoilState(templatesState)
   const { resetNodes } = useNode()
   const { resetEdges } = useEdge()
   const resetAll = () => {
@@ -46,9 +49,21 @@ const EditModeSelector: React.FC = () => {
         <ControlCameraIcon />
         <span>Select</span>
       </EditItem>
-      <EditItem onClick={() => {}}>
+      <EditItem
+        onClick={() => {
+          setOutput(true)
+        }}
+      >
         <GetAppIcon />
         <span>Output</span>
+      </EditItem>
+      <EditItem
+        onClick={() => {
+          setTemplates(true)
+        }}
+      >
+        <AppsIcon />
+        <span>Templates</span>
       </EditItem>
       <EditItem onClick={resetAll}>
         <RepeatIcon />
@@ -80,6 +95,7 @@ const EditItem = styled.div<{ isSelected?: boolean }>`
     width: 2em;
     height: 2em;
     color: ${(p) => p.theme.gray3};
+    margin: auto;
   }
   span {
     font-size: small;

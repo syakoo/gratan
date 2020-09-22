@@ -124,14 +124,14 @@ const NodeInfo: React.FC<{ node: Node }> = ({ node }) => {
                   })
                 }
               >
-                <option value="Left">Left</option>
-                <option value="Right">Right</option>
-                <option value="Top">Top</option>
-                <option value="Bottom">Bottom</option>
-                <option value="TopLeft">Top Left</option>
-                <option value="TopRight">Top Right</option>
-                <option value="BottomLeft">Bottom Left</option>
-                <option value="BottomRight">Bottom Right</option>
+                <option value="left">Left</option>
+                <option value="right">Right</option>
+                <option value="above">Above</option>
+                <option value="below">Below</option>
+                <option value="above left">Above Left</option>
+                <option value="above right">Above Right</option>
+                <option value="below left">Below Left</option>
+                <option value="below right">Below Right</option>
               </select>
             </td>
           </tr>
