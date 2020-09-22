@@ -1,16 +1,26 @@
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord'
 import ShowChartIcon from '@material-ui/icons/ShowChart'
 import ControlCameraIcon from '@material-ui/icons/ControlCamera'
+import RepeatIcon from '@material-ui/icons/Repeat'
 import React from 'react'
 import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
 
 import { editModeState } from '../../store/atoms'
+import { useNode, useEdge } from '../../logic/hooks'
 
 // ____________________
 //
 const EditModeSelector: React.FC = () => {
   const [editMode, setEditMode] = useRecoilState(editModeState)
+  const { resetNodes } = useNode()
+  const { resetEdges } = useEdge()
+  const resetAll = () => {
+    if (confirm('Delete all data on nodes and edges')) {
+      resetNodes()
+      resetEdges()
+    }
+  }
 
   return (
     <>
@@ -34,6 +44,10 @@ const EditModeSelector: React.FC = () => {
       >
         <ControlCameraIcon />
         <span>Select</span>
+      </EditItem>
+      <EditItem onClick={resetAll}>
+        <RepeatIcon />
+        <span>Reset</span>
       </EditItem>
     </>
   )
