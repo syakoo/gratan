@@ -1,22 +1,15 @@
 import { useCallback, useState, useEffect } from 'react'
-import { useSetRecoilState, useRecoilState, useRecoilValue } from 'recoil'
+import { useSetRecoilState, useRecoilValue } from 'recoil'
 
-import {
-  nodesState,
-  edgeFromState,
-  edgesState,
-  Coordinate,
-  editModeState,
-  selectedItemState,
-} from '../../store/atoms'
+import { Coordinate, editModeState, selectedItemState } from '../../store/atoms'
+import { useNode, useEdge } from '../../logic/hooks'
 
 // ____________________
 //
 export const useController = () => {
-  const [edgeTo, setEdgeTo] = useState<null | Coordinate>(null)
-  const [edgeFrom, setEdgeFrom] = useRecoilState(edgeFromState)
-  const [nodes, setNodes] = useRecoilState(nodesState)
-  const [edges, setEdges] = useRecoilState(edgesState)
+  const [edgeTo, setEdgeTo] = useState<Coordinate | null>(null)
+  const { nodes, addNode } = useNode()
+  const { edges, addEdge, edgeFrom, setEdgeFrom } = useEdge()
   const setSelectedItem = useSetRecoilState(selectedItemState)
   const editMode = useRecoilValue(editModeState)
 
@@ -25,64 +18,6 @@ export const useController = () => {
     setEdgeTo(null)
     setSelectedItem(null)
   }, [editMode])
-
-  const addNode = useCallback(
-    (co: Coordinate) => {
-      setNodes((nodes) => {
-        if (nodes.find((d) => d.x == co.x && d.y == co.y)) {
-          return [...nodes]
-        }
-        return [
-          ...nodes,
-          {
-            ...co,
-            nodeId: getId(),
-            r: 5,
-            fill: 'black',
-          },
-        ]
-      })
-    },
-    [setNodes]
-  )
-
-  const addEdge = useCallback(
-    (co: Coordinate) => {
-      if (edgeFrom) {
-        setEdges((edges) => {
-          if (
-            edges.find(
-              (d) =>
-                (d.from.x == co.x &&
-                  d.from.y == co.y &&
-                  d.to.x == edgeFrom.x &&
-                  d.to.y == edgeFrom.y) ||
-                (d.to.x == co.x &&
-                  d.to.y == co.y &&
-                  d.from.x == edgeFrom.x &&
-                  d.from.y == edgeFrom.y)
-            )
-          ) {
-            return [...edges]
-          }
-          return [
-            ...edges,
-            {
-              from: edgeFrom,
-              to: co,
-              edgeId: getId(),
-              width: 2,
-              color: 'black',
-            },
-          ]
-        })
-        setEdgeFrom(null)
-      } else {
-        setEdgeFrom(co)
-      }
-    },
-    [setEdges, edgeFrom, setEdgeFrom]
-  )
 
   const selectItem = useCallback(
     (co: Coordinate) => {
@@ -141,6 +76,7 @@ export const useController = () => {
     },
     [setEdgeTo]
   )
+
   return {
     onClick,
     onMouseEnter,
@@ -148,9 +84,4 @@ export const useController = () => {
     edgeTo,
     edgeFrom,
   }
-}
-
-const getId = (): number => {
-  const now = new Date()
-  return now.getTime()
 }
