@@ -12,7 +12,10 @@ export const useEdge = () => {
 
   const addEdge = useCallback(
     (co: Coordinate) => {
-      if (!edgeFrom) return
+      if (!edgeFrom) {
+        setEdgeFrom(co)
+        return
+      }
 
       if (
         edges.find(
