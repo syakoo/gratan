@@ -36,13 +36,32 @@ const Canvas: React.FC = () => {
         />
       ))}
       {nodes.map((node) => (
-        <circle
-          key={node.nodeId}
-          r={node.r}
-          cx={node.x}
-          cy={node.y}
-          fill={node.fill}
-        />
+        <>
+          {node.type === 'CIRCLE' && (
+            <circle
+              key={node.nodeId}
+              r={node.r}
+              cx={node.x}
+              cy={node.y}
+              fill={node.fill}
+              stroke={node.stroke}
+              strokeWidth={node.strokeWidth}
+            />
+          )}
+          {node.type === 'RECT' && (
+            <rect
+              key={node.nodeId}
+              width={node.r*2}
+              height={node.r*2}
+              x={node.x}
+              y={node.y}
+              fill={node.fill}
+              stroke={node.stroke}
+              strokeWidth={node.strokeWidth}
+              transform={`translate(-${node.r}, -${node.r})`}
+            />
+          )}
+        </>
       ))}
     </>
   )

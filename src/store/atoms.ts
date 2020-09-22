@@ -7,9 +7,12 @@ export type Coordinate = {
   y: number
 }
 export type Node = Coordinate & {
+  type: "CIRCLE" | "RECT"
   nodeId: number
   r: number
   fill: string
+  stroke: string
+  strokeWidth: number
 }
 export type Edge = {
   edgeId: number

@@ -21,6 +21,9 @@ export const useNode = () => {
           nodeId: getId(),
           r: 5,
           fill: 'black',
+          stroke: 'black',
+          strokeWidth: 1,
+          type: 'CIRCLE',
         },
       ])
     },

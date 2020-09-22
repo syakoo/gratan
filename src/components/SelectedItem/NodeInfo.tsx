@@ -23,6 +23,22 @@ const NodeInfo: React.FC<{ node: Node }> = ({ node }) => {
       <table>
         <tbody>
           <tr>
+            <th>type</th>
+            <td>
+              <select
+                value={node.type}
+                onChange={(e) =>
+                  updateNode(node.nodeId, {
+                    type: e.target.value as Node['type'],
+                  })
+                }
+              >
+                <option value="CIRCLE">Circle</option>
+                <option value="RECT">Rect</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
             <th>x</th>
             <td>{node.x}</td>
           </tr>
@@ -36,7 +52,7 @@ const NodeInfo: React.FC<{ node: Node }> = ({ node }) => {
               <input
                 type="number"
                 min={1}
-                max={10}
+                max={15}
                 value={node.r}
                 onChange={(e) =>
                   updateNode(node.nodeId, { r: +e.target.value })
@@ -50,6 +66,29 @@ const NodeInfo: React.FC<{ node: Node }> = ({ node }) => {
               <ColorSelector
                 value={node.fill}
                 onChange={(v) => updateNode(node.nodeId, { fill: v })}
+              />
+            </td>
+          </tr>
+          <tr>
+            <th>stroke</th>
+            <td>
+              <ColorSelector
+                value={node.stroke}
+                onChange={(v) => updateNode(node.nodeId, { stroke: v })}
+              />
+            </td>
+          </tr>
+          <tr>
+            <th>strokeWidth</th>
+            <td>
+              <input
+                type="number"
+                min={0}
+                max={5}
+                value={node.strokeWidth}
+                onChange={(e) =>
+                  updateNode(node.nodeId, { strokeWidth: +e.target.value })
+                }
               />
             </td>
           </tr>
