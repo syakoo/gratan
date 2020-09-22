@@ -51,7 +51,7 @@ const NodeInfo: React.FC<{ node: Node }> = ({ node }) => {
             <td>
               <input
                 type="number"
-                min={1}
+                min={0}
                 max={15}
                 value={node.r}
                 onChange={(e) =>
@@ -70,7 +70,11 @@ const NodeInfo: React.FC<{ node: Node }> = ({ node }) => {
             </td>
           </tr>
           <tr>
-            <th>stroke</th>
+            <th style={{ textAlign: 'left' }}>stroke</th>
+            <td>-----------------</td>
+          </tr>
+          <tr>
+            <th>color</th>
             <td>
               <ColorSelector
                 value={node.stroke}
@@ -79,7 +83,7 @@ const NodeInfo: React.FC<{ node: Node }> = ({ node }) => {
             </td>
           </tr>
           <tr>
-            <th>strokeWidth</th>
+            <th>width</th>
             <td>
               <input
                 type="number"
@@ -90,6 +94,45 @@ const NodeInfo: React.FC<{ node: Node }> = ({ node }) => {
                   updateNode(node.nodeId, { strokeWidth: +e.target.value })
                 }
               />
+            </td>
+          </tr>
+          <tr>
+            <th style={{ textAlign: 'left' }}>label</th>
+            <td>-----------------</td>
+          </tr>
+          <tr>
+            <th>text</th>
+            <td>
+              <input
+                value={node.label}
+                onChange={(e) =>
+                  updateNode(node.nodeId, {
+                    label: e.target.value,
+                  })
+                }
+              />
+            </td>
+          </tr>
+          <tr>
+            <th>position</th>
+            <td>
+              <select
+                value={node.labelPosition}
+                onChange={(e) =>
+                  updateNode(node.nodeId, {
+                    labelPosition: e.target.value as Node['labelPosition'],
+                  })
+                }
+              >
+                <option value="Left">Left</option>
+                <option value="Right">Right</option>
+                <option value="Top">Top</option>
+                <option value="Bottom">Bottom</option>
+                <option value="TopLeft">Top Left</option>
+                <option value="TopRight">Top Right</option>
+                <option value="BottomLeft">Bottom Left</option>
+                <option value="BottomRight">Bottom Right</option>
+              </select>
             </td>
           </tr>
         </tbody>

@@ -2,6 +2,7 @@ import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord'
 import ShowChartIcon from '@material-ui/icons/ShowChart'
 import ControlCameraIcon from '@material-ui/icons/ControlCamera'
 import RepeatIcon from '@material-ui/icons/Repeat'
+import GetAppIcon from '@material-ui/icons/GetApp'
 import React from 'react'
 import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
@@ -44,6 +45,10 @@ const EditModeSelector: React.FC = () => {
       >
         <ControlCameraIcon />
         <span>Select</span>
+      </EditItem>
+      <EditItem onClick={() => {}}>
+        <GetAppIcon />
+        <span>Output</span>
       </EditItem>
       <EditItem onClick={resetAll}>
         <RepeatIcon />

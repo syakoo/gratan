@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import React from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
+import MathJax from 'react-mathjax-preview'
 
 import {
   nodesState,
@@ -12,7 +13,7 @@ import Controller from './Controller'
 
 // ____________________
 //
-const Canvas: React.FC = () => {
+export const Canvas: React.FC = () => {
   const nodes = useRecoilValue(nodesState)
   const edges = useRecoilValue(edgesState)
   const editMode = useRecoilValue(editModeState)
@@ -51,8 +52,8 @@ const Canvas: React.FC = () => {
           {node.type === 'RECT' && (
             <rect
               key={node.nodeId}
-              width={node.r*2}
-              height={node.r*2}
+              width={node.r * 2}
+              height={node.r * 2}
               x={node.x}
               y={node.y}
               fill={node.fill}
@@ -61,6 +62,39 @@ const Canvas: React.FC = () => {
               transform={`translate(-${node.r}, -${node.r})`}
             />
           )}
+          <foreignObject
+            x={node.x + 10}
+            y={node.y - 13}
+            width="100"
+            height="20"
+            style={{
+              textAlign: node.labelPosition.includes('Right')
+                ? 'left'
+                : node.labelPosition.includes('Left')
+                ? 'right'
+                : 'center',
+            }}
+            transform={`translate(${
+              node.labelPosition.includes('Right')
+                ? '0'
+                : node.labelPosition.includes('Left')
+                ? '-120'
+                : '-60'
+            }, ${
+              node.labelPosition.includes('Top')
+                ? '-25'
+                : node.labelPosition.includes('Bottom')
+                ? '25'
+                : '0'
+            })`}
+          >
+            {
+              // @ts-ignore
+              <div xmlns="http://www.w3.org/1999/xhtml">
+                <MathJax math={`$${node.label}$`} />
+              </div>
+            }
+          </foreignObject>
         </>
       ))}
     </>

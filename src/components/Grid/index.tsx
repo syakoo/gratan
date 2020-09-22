@@ -17,7 +17,7 @@ type Grid = {
 //
 const Grid: React.FC<Grid> = React.memo(
   ({ className, onClick, onMouseEnter, onMouseLeave }) => {
-    const dots = computeDots(1000)
+    const dots = computeDots(700)
 
     return (
       <g className={className}>

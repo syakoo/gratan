@@ -10,7 +10,7 @@ import SelectedItem, { SelectedItemView } from '../SelectedItem'
 const Main: React.FC = () => {
   return (
     <StyledMain>
-      <svg viewBox="-500, -500, 1000, 1000">
+      <svg viewBox="-350, -350, 700, 700">
         <SelectedItemView />
         <BgGrid />
         <Canvas />

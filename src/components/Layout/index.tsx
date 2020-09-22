@@ -18,6 +18,7 @@ const Layout: React.FC = ({ children }) => {
 //
 const StyledMainBody = styled.div`
   height: calc(100vh - 3rem);
+  position: relative;
   display: grid;
   grid-template-columns: max-content 1fr;
 `

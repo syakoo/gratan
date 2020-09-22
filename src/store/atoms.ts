@@ -6,8 +6,19 @@ export type Coordinate = {
   x: number
   y: number
 }
+export type Position =
+  | 'Left'
+  | 'Right'
+  | 'Top'
+  | 'Bottom'
+  | 'TopLeft'
+  | 'TopRight'
+  | 'BottomLeft'
+  | 'BottomRight'
 export type Node = Coordinate & {
-  type: "CIRCLE" | "RECT"
+  type: 'CIRCLE' | 'RECT'
+  label: string
+  labelPosition: Position
   nodeId: number
   r: number
   fill: string
