@@ -14,7 +14,6 @@ const Output: React.FC = () => {
   const [output, setOutput] = useRecoilState(outputState)
   const { edges } = useEdge()
   const { nodes } = useNode()
-  console.log({ nodes, edges })
 
   return (
     <>

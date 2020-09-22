@@ -34,6 +34,5 @@ export const graph2Tikz = (edges: Edge[], nodes: Node[]) => {
     .join('\n  ')}
 \\end{tikzpicture}
   `
-  console.log({ code })
   return code
 }
